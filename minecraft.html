@@ -17,21 +17,8 @@
 
       fetch(url)
         .then(res => res.json())
-        .then(data => {
-          if (data.online) {
-            document.getElementById("info").innerHTML = `
-              <p>🟢 <b>Servidor en línea</b></p>
-              <p>IP: ${data.hostname}</p>
-              <p>Jugadores conectados: ${data.players.online} / ${data.players.max}</p>
-              <p>Versión: ${data.version}</p>
-            `;
-          } else {
-            document.getElementById("info").innerHTML = "🔴 Servidor fuera de línea";
-          }
-        })
-        .catch(() => {
-          document.getElementById("info").innerHTML = "Error al obtener datos del servidor.";
-        });
+        .then(data => console.log(data))
+         
     }
 
     checkServer(); // ejecuta al cargar
