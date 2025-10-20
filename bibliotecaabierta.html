@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Búsqueda de libros - Open Library</title>
+</head>
+<body>
+  <h2>Buscar libros en Open Library</h2>
+  <input type="text" id="title" placeholder="Ej: Harry Potter">
+  <button onclick="searchBook()">Buscar</button>
+  <div id="results"></div>
+
+  <script>
+    function searchBook() {
+      const title = document.getElementById("title").value;
+      const url = `https://openlibrary.org/search.json?title=${encodeURIComponent(title)}`;
+
+      fetch(url)
+        .then(res => res.json())
+        .then(data => {
+          const resultsDiv = document.getElementById("results");
+          resultsDiv.innerHTML = "";
+
+          if (data.docs.length === 0) {
+            resultsDiv.innerHTML = "No se encontraron resultados.";
+            return;
+          }
+
+          data.docs.slice(0, 5).forEach(book => {
+            const coverId = book.cover_i;
+            const coverUrl = coverId
+              ? `https://covers.openlibrary.org/b/id/${coverId}-M.jpg`
+              : "https://via.placeholder.com/128x195?text=Sin+portada";
+
+            resultsDiv.innerHTML += `
+              <div>
+                <img src="${coverUrl}" width="128">
+                <p><b>${book.title}</b><br>Autor: ${book.author_name ? book.author_name[0] : "Desconocido"}</p>
+              </div><hr>
+            `;
+          });
+        });
+    }
+  </script>
+</body>
+</html>

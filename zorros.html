@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Zorro aleatorio 🦊</title>
+</head>
+<body>
+  <h2>Imagen aleatoria de zorro</h2>
+  <img id="fox" width="300"><br><br>
+  <button onclick="getFox()">Mostrar otro zorro</button>
+
+  <script>
+    function getFox() {
+      fetch("https://randomfox.ca/floof/")
+        .then(response => response.json())
+        .then(data => {
+          document.getElementById("fox").src = data.image;
+        });
+    }
+    getFox(); // mostrar uno al cargar
+  </script>
+</body>
+</html>
