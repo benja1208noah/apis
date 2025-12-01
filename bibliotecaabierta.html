@@ -20,16 +20,16 @@
     <h2 class="mb-4 text-primary">Buscar libros en Open Library</h2>
 
     <div class="input-group mb-4">
-      <input type="text" id="title" class="form-control" placeholder="Escribí el título del libro o autor">
-      <button class="btn btn-primary" onclick="searchBook()">Buscar</button>
+      <input type="text" id="titulo" class="form-control" placeholder="Escribí el título del libro o autor">
+      <button class="btn btn-primary" onclick="buscarlibro()">Buscar</button>
     </div>
   </div>
 
   <div id="resultados" class="row justify-content-center"></div>
 
   <script>
-    function searchBook() {
-      const title = document.getElementById("title").value.trim();
+    function buscarlibro() {
+      const title = document.getElementById("titulo").value.trim();
       const url = `https://openlibrary.org/search.json?title=${encodeURIComponent(title)}`;
 
       fetch(url)
