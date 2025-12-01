@@ -55,7 +55,7 @@
       // Imagen del autor
       const imagenUrl = `https://covers.openlibrary.org/a/olid/${autorId}-M.jpg`;
 
-      // Obtener info del autor
+
       fetch(`https://openlibrary.org/authors/${autorId}.json`)
         .then(res => res.json())
         .then(autor => {
@@ -74,7 +74,6 @@
           document.getElementById("autor").innerHTML = `<div class="alert alert-danger">No se pudo cargar la información del autor.</div>`;
         });
 
-      // Obtener obras del autor
       fetch(`https://openlibrary.org/authors/${autorId}/works.json`)
         .then(res => res.json())
         .then(data => {
